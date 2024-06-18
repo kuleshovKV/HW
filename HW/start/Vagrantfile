@@ -1,0 +1,12 @@
+Vagrant.configure(2) do |config|
+  config.vm.define "debian" do |srv|
+    srv.vm.box = "debian"
+    srv.vm.synced_folder "./", "/vagrant"
+    srv.vm.hostname = "debian11"
+    srv.vm.network(:private_network, ip: "192.168.56.10")
+    srv.vm.provider "virtualbox" do |vb|
+      vb.memory = "2048"
+      vb.cpus = "1"
+    end
+  end
+end
