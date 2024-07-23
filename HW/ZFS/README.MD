@@ -5,6 +5,7 @@ ZFS
 Использовать в примере будем ВМ из Vagrantfile. В нес разворачивается машина с 8 дисками, ОС CentOS 7 и с установленными пакетами для работы с zfs 
 - Создадим 4 пула по два диска в каждом 
 [vagrant@exc4vm ~]$ lsblk
+
 NAME   MAJ:MIN RM  SIZE RO TYPE MOUNTPOINT
 sda      8:0    0   40G  0 disk 
 └─sda1   8:1    0   40G  0 part /
@@ -16,10 +17,12 @@ sdf      8:80   0  512M  0 disk
 sdg      8:96   0  512M  0 disk 
 sdh      8:112  0  512M  0 disk 
 sdi      8:128  0  512M  0 disk 
+
 [root@exc4vm vagrant]# zpool create part1 mirror /dev/sdb /dev/sdc
 [root@exc4vm vagrant]# zpool create part2 mirror /dev/sdd /dev/sde
 [root@exc4vm vagrant]# zpool create part3 mirror /dev/sdf /dev/sdg
 [root@exc4vm vagrant]# zpool create part4 mirror /dev/sdh /dev/sdi
+
 Проверяем то, что создали
 [root@exc4vm vagrant]# zpool status
   pool: part1
